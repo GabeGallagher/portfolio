@@ -1,28 +1,11 @@
 import profilePic from "./images/ProfilePic.jpg";
 import titleImage from "./images/Title.png";
 import "./App.css";
-import React, { useState, useEffect } from "react";
 
 function App() {
-  const [scrollY, setScrollY] = useState(0);
-  const handleScroll = () => {
-    setScrollY(window.scrollY);
-    console.log("scrolling");
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  let scaleTitleImage = Math.max(1 - scrollY / 500, 0.5);
-
   return (
     <div className="App">
-      <div
-        className="title-image"
-        style={{ transform: `scale(${scaleTitleImage})` }}
-      >
+      <div className="title-image">
         <img src={titleImage} alt="title" />
       </div>
       <div className="main-content">
@@ -43,7 +26,9 @@ function App() {
             Guy!
           </p>
         </div>
-        <img src={profilePic} className="Profile-pic" alt="profile" />
+        <div className="profile-pic">
+          <img src={profilePic} alt="profile" />
+        </div>
       </div>
     </div>
   );
